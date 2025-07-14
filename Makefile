@@ -112,6 +112,15 @@ docker-push-w-buildx:
 				--push \
         		--platform ${IMG_PLATFORM}
 
+srw-docker-push-w-buildx:
+	docker buildx build . --target bin \
+        		--tag simonrw/aws-load-balancer-controller \
+				--build-arg BASE_IMAGE=golang:1.24.2-alpine \
+				--build-arg BUILD_IMAGE=golang-1.24.2-alpine \
+				--build-arg TARGETOS=linux \
+				--build-arg TARGETARCH=arm64 \
+        		--platform linux/arm64
+
 # find or download controller-gen
 # download controller-gen if necessary
 controller-gen:
